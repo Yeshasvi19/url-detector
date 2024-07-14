@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Main Page</title>
+    <style>
+        .logout-button, .view-feedback-button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            color: white;
+            background-color: #dc3545;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .logout-button:hover, .view-feedback-button:hover {
+            background-color: #c82333;
+        }
+        .view-feedback-button {
+            background-color: #007bff;
+        }
+        .view-feedback-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h2>Main Page</h2>
+    <form method="POST">
+        <label for="url">URL:</label>
+        <input type="text" id="url" name="url" required>
+        <button type="submit">Check URL</button>
+    </form>
+    <a href="{{ url_for('view_feedback') }}" class="view-feedback-button">View Feedback</a>
+    <a href="{{ url_for('logout') }}" class="logout-button">Log Out</a>
+</body>
+</html>

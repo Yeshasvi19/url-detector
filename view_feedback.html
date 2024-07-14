@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Feedback</title>
+    <style>
+        .feedback-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .feedback-table th, .feedback-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        .feedback-table th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+        .logout-button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            color: white;
+            background-color: #dc3545;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .logout-button:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <h2>View Feedback</h2>
+    <table class="feedback-table">
+        <tr>
+            <th>URL</th>
+            <th>Prediction</th>
+            <th>Feedback</th>
+            <th>Comments</th>
+            <th>Action</th>
+        </tr>
+        {% for feedback in feedbacks %}
+        <tr>
+            <td>{{ feedback[1] }}</td>
+            <td>{{ feedback[2] }}</td>
+            <td>{{ feedback[3] }}</td>
+            <td>{{ feedback[4] }}</td>
+            <td>
+                <form action="{{ url_for('delete_feedback', id=feedback[0]) }}" method="post">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{{ url_for('logout') }}" class="logout-button">Log Out</a>
+</body>
+</html>

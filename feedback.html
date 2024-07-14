@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Feedback</title>
+    <style>
+        .logout-button, .view-feedback-button, .view-graph-button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            color: white;
+            background-color: #dc3545;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .logout-button:hover, .view-feedback-button:hover, .view-graph-button:hover {
+            background-color: #c82333;
+        }
+        .view-feedback-button, .view-graph-button {
+            background-color: #007bff;
+        }
+        .view-feedback-button:hover, .view-graph-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h2>Feedback</h2>
+    <p>URL: {{ url }}</p>
+    <p>Prediction: {{ prediction }}</p>
+    <p>Probability: {{ probability }}</p>
+    <form action="{{ url_for('feedback') }}" method="post">
+        <input type="hidden" name="url" value="{{ url }}">
+        <input type="hidden" name="prediction" value="{{ prediction }}">
+        <label for="feedback">Are you satisfied with your feedback?</label><br>
+        <input type="radio" id="yes" name="feedback" value="yes" required>
+        <label for="yes">Yes</label><br>
+        <input type="radio" id="no" name="feedback" value="no" required>
+        <label for="no">No</label><br><br>
+        <label for="comments">Comments (optional):</label><br>
+        <textarea id="comments" name="comments"></textarea><br><br>
+        <input type="submit" value="Submit Feedback">
+    </form>
+    <a href="{{ url_for('view_feedback') }}" class="view-feedback-button">View Feedback</a>
+    <a href="{{ url_for('plot') }}" class="view-graph-button">View Feature Importances</a>
+    <a href="{{ url_for('logout') }}" class="logout-button">Log Out</a>
+</body>
+</html>
